@@ -1,7 +1,7 @@
 <?php
 include './banco/conexao.php';
 
-if (isset($_POST['produtos'])) {//insert
+if (isset($_POST['produtos'])) { //insert
 
 	$produtos = $_POST['produtos'];
 	$preco = $_POST['preco'];
@@ -9,21 +9,19 @@ if (isset($_POST['produtos'])) {//insert
 
 	$corLower = strtolower($cor);
 
-	if($corLower=='azul' || $corLower=='vermelho'){
+	if ($corLower == 'azul' || $corLower == 'vermelho') {
 
-		$preco = $preco *0.8;
-
+		$preco = $preco * 0.8;
 	}
 
-	if($corLower == 'amarelo'){
-		$preco = $preco *0.9;
+	if ($corLower == 'amarelo') {
+		$preco = $preco * 0.9;
 	}
 
-	if ($corLower=='vermelho' && $preco>50){
-		$preco = $preco *0.95;
-
+	if ($corLower == 'vermelho' && $preco > 50) {
+		$preco = $preco * 0.95;
 	}
-	
+
 
 
 
@@ -209,8 +207,10 @@ if (isset($_GET['atualizaId'])) {
 								$nome = $v['NOME'];
 								$cor = $v['COR'];
 								$valorTotal += $preco;
+
+								$precoFormatado = number_format($preco, 2, ",", ".");
 								echo "<tr><td>" . $nome . "</td>
-								<td>R$ " . $preco . "</td>
+								<td>R$ " . $precoFormatado . "</td>
 								<td>" . $cor . "</td>";
 								echo '<td>
 								
@@ -222,8 +222,8 @@ if (isset($_GET['atualizaId'])) {
 
 							?>
 							<th>Valor Total</th>
+							<th> R$ <?php echo number_format($valorTotal, 2, ",", ".");; ?></th>
 							<th></th>
-							<th> R$ <?php echo $valorTotal; ?></th>
 							<th></th>
 						</tbody>
 					</table>
